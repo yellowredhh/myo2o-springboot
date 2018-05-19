@@ -1,0 +1,118 @@
+2018-05-19 09:49:51.746 [main] INFO  com.imooc.myo2o.dao.AreaDaoTest -
+				Starting AreaDaoTest on Mi-pro with PID 17780 (started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 09:49:51.749 [main] DEBUG com.imooc.myo2o.dao.AreaDaoTest -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 09:49:51.751 [main] INFO  com.imooc.myo2o.dao.AreaDaoTest -
+				No active profile set, falling back to default profiles: default
+2018-05-19 09:49:55.173 [main] INFO  com.imooc.myo2o.dao.AreaDaoTest -
+				Started AreaDaoTest in 3.622 seconds (JVM running for 4.603)
+2018-05-19 09:53:33.175 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Starting AreaServiceTest on Mi-pro with PID 16700 (started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 09:53:33.187 [main] DEBUG com.imooc.myo2o.service.AreaServiceTest -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 09:53:33.189 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				No active profile set, falling back to default profiles: default
+2018-05-19 09:57:06.975 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Starting AreaServiceTest on Mi-pro with PID 18832 (started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 09:57:06.976 [main] DEBUG com.imooc.myo2o.service.AreaServiceTest -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 09:57:06.977 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				No active profile set, falling back to default profiles: default
+2018-05-19 09:57:10.951 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Started AreaServiceTest in 4.163 seconds (JVM running for 5.019)
+2018-05-19 09:57:33.919 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Starting AreaServiceTest on Mi-pro with PID 1412 (started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 09:57:33.920 [main] DEBUG com.imooc.myo2o.service.AreaServiceTest -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 09:57:33.922 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				No active profile set, falling back to default profiles: default
+2018-05-19 09:57:37.288 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Started AreaServiceTest in 3.552 seconds (JVM running for 4.389)
+2018-05-19 10:10:35.992 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 2872 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:10:35.994 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:10:35.995 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:10:40.241 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Started Myo2oApplication in 4.477 seconds (JVM running for 5.001)
+2018-05-19 10:15:56.656 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 556 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:15:56.658 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:15:56.660 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:20:34.508 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 5156 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:20:34.510 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:20:34.512 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:23:56.344 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 15480 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:23:56.346 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:23:56.347 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:24:10.409 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 18688 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:24:10.412 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:24:10.413 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:24:54.620 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Starting AreaServiceTest on Mi-pro with PID 8016 (started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:24:54.621 [main] DEBUG com.imooc.myo2o.service.AreaServiceTest -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:24:54.623 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:24:58.787 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Started AreaServiceTest in 4.384 seconds (JVM running for 5.507)
+2018-05-19 10:27:17.611 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 15404 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:27:17.613 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:27:17.614 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:40:54.269 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 4720 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:40:54.272 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:40:54.274 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:53:59.442 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 10132 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:53:59.445 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:53:59.446 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:57:53.249 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 1632 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:57:53.251 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:57:53.252 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:59:54.255 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Starting AreaServiceTest on Mi-pro with PID 18540 (started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 10:59:54.255 [main] DEBUG com.imooc.myo2o.service.AreaServiceTest -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 10:59:54.257 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				No active profile set, falling back to default profiles: default
+2018-05-19 10:59:58.050 [main] INFO  com.imooc.myo2o.service.AreaServiceTest -
+				Started AreaServiceTest in 3.984 seconds (JVM running for 4.903)
+2018-05-19 11:00:13.470 [main] INFO  com.imooc.myo2o.service.ShopServiceTest -
+				Starting ShopServiceTest on Mi-pro with PID 8208 (started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 11:00:13.471 [main] DEBUG com.imooc.myo2o.service.ShopServiceTest -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 11:00:13.472 [main] INFO  com.imooc.myo2o.service.ShopServiceTest -
+				No active profile set, falling back to default profiles: default
+2018-05-19 11:00:17.313 [main] INFO  com.imooc.myo2o.service.ShopServiceTest -
+				Started ShopServiceTest in 4.018 seconds (JVM running for 4.93)
+2018-05-19 11:06:00.799 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Starting Myo2oApplication on Mi-pro with PID 3076 (F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o\target\classes started by hh in F:\Projects\workspace-sts-3.9.4.RELEASE\myo2o)
+2018-05-19 11:06:00.801 [main] DEBUG com.imooc.myo2o.Myo2oApplication -
+				Running with Spring Boot v2.0.2.RELEASE, Spring v5.0.6.RELEASE
+2018-05-19 11:06:00.803 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				No active profile set, falling back to default profiles: default
+2018-05-19 11:06:04.747 [main] INFO  com.imooc.myo2o.Myo2oApplication -
+				Started Myo2oApplication in 4.177 seconds (JVM running for 4.68)
