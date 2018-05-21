@@ -20,13 +20,15 @@ public class ShopAuthMapServiceImpl implements ShopAuthMapService {
 	private ShopAuthMapDao shopAuthMapDao;
 
 	@Override
-	public ShopAuthMapExecution listShopAuthMapByShopId(Long shopId,
-			Integer pageIndex, Integer pageSize) {
+	public ShopAuthMapExecution listShopAuthMapByShopId(Long shopId, Integer pageIndex, Integer pageSize) {
+		// 空值判定
 		if (shopId != null && pageIndex != null && pageSize != null) {
-			int beginIndex = PageCalculator.calculateRowIndex(pageIndex,
+			// 页转行
+			int beginIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+			// 查询返回该店铺的授权信息列表
+			List<ShopAuthMap> shopAuthMapList = shopAuthMapDao.queryShopAuthMapListByShopId(shopId, beginIndex,
 					pageSize);
-			List<ShopAuthMap> shopAuthMapList = shopAuthMapDao
-					.queryShopAuthMapListByShopId(shopId, beginIndex, pageSize);
+			// 返回总数
 			int count = shopAuthMapDao.queryShopAuthCountByShopId(shopId);
 			ShopAuthMapExecution se = new ShopAuthMapExecution();
 			se.setShopAuthMapList(shopAuthMapList);
@@ -40,56 +42,50 @@ public class ShopAuthMapServiceImpl implements ShopAuthMapService {
 
 	@Override
 	@Transactional
-	public ShopAuthMapExecution addShopAuthMap(ShopAuthMap shopAuthMap)
-			throws RuntimeException {
-		if (shopAuthMap != null && shopAuthMap.getShopId() != null
-				&& shopAuthMap.getEmployeeId() != null) {
+	public ShopAuthMapExecution addShopAuthMap(ShopAuthMap shopAuthMap) throws RuntimeException {
+		// 空值判定(店铺id和员工id的非空判定)
+		if (shopAuthMap != null && shopAuthMap.getShopId() != null && shopAuthMap.getEmployeeId() != null) {
+			// 设置默认值
 			shopAuthMap.setCreateTime(new Date());
 			shopAuthMap.setLastEditTime(new Date());
 			shopAuthMap.setEnableStatus(1);
 			try {
+				// 添加授权信息
 				int effectedNum = shopAuthMapDao.insertShopAuthMap(shopAuthMap);
 				if (effectedNum <= 0) {
 					throw new RuntimeException("添加授权失败");
 				}
-				return new ShopAuthMapExecution(ShopAuthMapStateEnum.SUCCESS,
-						shopAuthMap);
+				return new ShopAuthMapExecution(ShopAuthMapStateEnum.SUCCESS, shopAuthMap);
 			} catch (Exception e) {
 				throw new RuntimeException("添加授权失败:" + e.toString());
 			}
 		} else {
-			return new ShopAuthMapExecution(
-					ShopAuthMapStateEnum.NULL_SHOPAUTH_INFO);
+			return new ShopAuthMapExecution(ShopAuthMapStateEnum.NULL_SHOPAUTH_INFO);
 		}
 	}
 
 	@Override
 	@Transactional
-	public ShopAuthMapExecution modifyShopAuthMap(ShopAuthMap shopAuthMap)
-			throws RuntimeException {
+	public ShopAuthMapExecution modifyShopAuthMap(ShopAuthMap shopAuthMap) throws RuntimeException {
+		// 控制判断,主要是对授权Id做校验
 		if (shopAuthMap == null || shopAuthMap.getShopAuthId() == null) {
-			return new ShopAuthMapExecution(
-					ShopAuthMapStateEnum.NULL_SHOPAUTH_ID);
+			return new ShopAuthMapExecution(ShopAuthMapStateEnum.NULL_SHOPAUTH_ID);
 		} else {
 			try {
 				int effectedNum = shopAuthMapDao.updateShopAuthMap(shopAuthMap);
 				if (effectedNum <= 0) {
-					return new ShopAuthMapExecution(
-							ShopAuthMapStateEnum.INNER_ERROR);
+					return new ShopAuthMapExecution(ShopAuthMapStateEnum.INNER_ERROR);
 				} else {// 创建成功
-					return new ShopAuthMapExecution(
-							ShopAuthMapStateEnum.SUCCESS, shopAuthMap);
+					return new ShopAuthMapExecution(ShopAuthMapStateEnum.SUCCESS, shopAuthMap);
 				}
 			} catch (Exception e) {
-				throw new RuntimeException("updateShopByOwner error: "
-						+ e.getMessage());
+				throw new RuntimeException("updateShopByOwner error: " + e.getMessage());
 			}
 		}
 	}
 
 	@Override
-	public ShopAuthMapExecution removeShopAuthMap(Long shopAuthMapId)
-			throws RuntimeException {
+	public ShopAuthMapExecution removeShopAuthMap(Long shopAuthMapId) throws RuntimeException {
 		// TODO Auto-generated method stub
 		return null;
 	}

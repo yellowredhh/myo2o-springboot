@@ -3,7 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imooc.myo2o.dao.UserShopMapDao">
-	<resultMap id="userShopResultMap" type="com.imooc.myo2o.entity.UserShopMap">
+	<resultMap id="userShopResultMap"
+		type="com.imooc.myo2o.entity.UserShopMap">
 		<id column="user_shop_id" property="userShopId" />
 		<result column="user_id" property="userId" />
 		<result column="shop_id" property="shopId" />
@@ -56,21 +57,26 @@
 		FROM
 		tb_user_shop_map
 		<where>
+			<!-- 按照顾客id进行精确查询 -->
 			<if test="userShopCondition.userId!=null">
 				and user_id = #{userShopCondition.userId}
 			</if>
+			<!-- 按照商铺信息进行精确查询 -->
 			<if test="userShopCondition.shopId!=null">
 				and shop_id = #{userShopCondition.shopId}
 			</if>
+			<!-- 按照顾客姓名进行模糊查询 -->
 			<!-- 写like语句的时候 一般都会写成 like '% %' 在mybatis里面写就是应该是 like '%${name} %' 而不是 
 				'%#{name} %' ${name} 是不带单引号的，而#{name} 是带单引号的 -->
 			<if test="userShopCondition.userName!=null">
 				and user_name like '%${userShopCondition.userName}%'
 			</if>
+			<!-- 按照商铺名字进行模糊查询 -->
 			<if test="userShopCondition.shopName!=null">
 				and shop_name like
 				'%${userShopCondition.shopName}%'
 			</if>
+			<!-- 按照信息创建时间进行查询(查询大于某一个时间点的记录) -->
 			<if test="userShopCondition.createTime!=null">
 				and create_time > #{userShopCondition.createTime}
 			</if>
@@ -103,8 +109,8 @@
 			</if>
 		</where>
 	</select>
-	<select id="queryUserShopMap" resultType="com.imooc.myo2o.entity.UserShopMap"
-		parameterType="long">
+	<select id="queryUserShopMap"
+		resultType="com.imooc.myo2o.entity.UserShopMap" parameterType="long">
 		SELECT
 		user_shop_id,
 		user_id,
@@ -120,17 +126,20 @@
 		AND
 		shop_id = #{shopId}
 	</select>
-	<insert id="insertUserShopMap" parameterType="com.imooc.myo2o.entity.UserShopMap"
-		useGeneratedKeys="true" keyProperty="userShopId" keyColumn="user_shop_id">
+	<insert id="insertUserShopMap"
+		parameterType="com.imooc.myo2o.entity.UserShopMap"
+		useGeneratedKeys="true" keyProperty="userShopId"
+		keyColumn="user_shop_id">
 		INSERT
 		INTO
-		tb_user_product_map(user_id,shop_id,
+		tb_user_shop_map(user_id,shop_id,
 		user_name,shop_name,create_time,point)
 		VALUES
 		(#{userId},#{shopId},
 		#{userName},#{shopName},#{createTime},#{point})
 	</insert>
-	<update id="updateUserShopMapPoint" parameterType="com.imooc.myo2o.entity.UserShopMap"
+	<update id="updateUserShopMapPoint"
+		parameterType="com.imooc.myo2o.entity.UserShopMap"
 		keyProperty="user_shop_id" useGeneratedKeys="true">
 		UPDATE tb_user_shop_map
 		SET point=#{point}

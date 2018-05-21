@@ -1,9 +1,7 @@
 $(function() {
-	// var shopId = 20;
-	// var listUrl = '/myo2o/shopadmin/getproductcategorylist?shopId=' + shopId;
-	var listUrl = '/myo2o/shopadmin/getproductcategorylist';
-	var addUrl = '/myo2o/shopadmin/addproductcategorys';
-	var deleteUrl = '/myo2o/shopadmin/removeproductcategory';
+	var listUrl = '/myo2o/shop/getproductcategorylist';
+	var addUrl = '/myo2o/shop/addproductcategorys';
+	var deleteUrl = '/myo2o/shop/removeproductcategory';
 
 	$
 			.getJSON(

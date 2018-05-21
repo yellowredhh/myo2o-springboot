@@ -1,5 +1,11 @@
 package com.imooc.myo2o.util.weixin.message.req;
 
+/**
+ * 用于接收平台二维码的信息
+ * 
+ * @author hh
+ *
+ */
 public class WechatInfo {
 	private Long customerId;
 	private Long productId;

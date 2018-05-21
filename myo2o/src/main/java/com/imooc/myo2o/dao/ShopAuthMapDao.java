@@ -15,8 +15,7 @@ public interface ShopAuthMapDao {
 	 * @param pageSize
 	 * @return
 	 */
-	List<ShopAuthMap> queryShopAuthMapListByShopId(
-			@Param("shopId") long shopId, @Param("rowIndex") int rowIndex,
+	List<ShopAuthMap> queryShopAuthMapListByShopId(@Param("shopId") long shopId, @Param("rowIndex") int rowIndex,
 			@Param("pageSize") int pageSize);
 
 	/**
@@ -44,16 +43,16 @@ public interface ShopAuthMapDao {
 	int updateShopAuthMap(ShopAuthMap shopAuthMap);
 
 	/**
-	 * 对某员工除权
+	 * 对某员工除权(传入店铺id作为安全校验)
 	 * 
 	 * @param employeeId
 	 * @param shopId
 	 * @return effectedNum
 	 */
-	int deleteShopAuthMap(@Param("employeeId") long employeeId,
-			@Param("shopId") long shopId);
+	int deleteShopAuthMap(@Param("shopAuthId") long employeeId, @Param("shopId") long shopId);
 
 	/**
+	 * 通过shopAuthId查询员工授权信息
 	 * 
 	 * @param shopAuthId
 	 * @return

@@ -86,7 +86,7 @@ public class UserAwardMapDaoTest {
 		List<UserAwardMap> userAwardMapList = userAwardMapDao.queryUserAwardMapList(userAwardMap, 0, 3);
 		assertEquals(2, userAwardMapList.size());
 		userAwardMap = userAwardMapList.get(1);
-		assertTrue("error,不可用状态", 0 == userAwardMap.getUsedStatus());
+		assertTrue("error,可用状态", 0 == userAwardMap.getUsedStatus());
 		userAwardMap.setUsedStatus(1);
 		int effectNumber = userAwardMapDao.updateUserAwardMap(userAwardMap);
 		assertEquals(1, effectNumber);

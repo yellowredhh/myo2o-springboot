@@ -37,13 +37,14 @@ $(function() {
 			success : function(data) {
 				if (data.success) {
 					$.toast('登录成功！');
+					//登录成功则进入店铺展示界面展示该店主所拥有的店铺
 					window.location.href = '/myo2o/shop/shoplist';
 				} else {
 					$.toast('登录失败！');
 					//登录失败,则累计登录次数加1.
 					loginCount++;
 					if (loginCount >= 3) {
-						//这个验证码模块是之前就已经写在了页面中的,只有当登录账号输入错误3次才会显示出来
+						//这个验证码模块是之前就已经写在了前端页面中的,只有当登录账号输入错误3次才会显示出来
 						$('#verifyPart').show();
 					}
 				}

@@ -3,7 +3,7 @@ package com.imooc.myo2o.util;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 尝试从http请求中获取对应字符串的数据
+ * 尝试从http请求中获取对应字符串的数据(在post请求体中含有所需要的键值对)
  * @author hh
  *
  */

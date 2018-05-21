@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc.myo2o.dao.ProductSellDailyDao">
+	<resultMap id="productSellDailyResultMap"
+		type="com.imooc.myo2o.entity.ProductSellDaily">
+		<result column="create_time" property="createTime" />
+		<result column="total" property="total" />
+		<association property="product" column="product_id"
+			javaType="com.imooc.myo2o.entity.Product">
+			<id column="product_id" property="productId" />
+			<result column="product_name" property="productName" />
+		</association>
+		<association property="shop" column="shop_id"
+			javaType="com.imooc.myo2o.entity.Shop">
+			<id column="shop_id" property="shopId" />
+			<result column="shop_name" property="shopName" />
+		</association>
+	</resultMap>
+	<select id="queryProductSellDailyList"
+		resultMap="productSellDailyResultMap">
+		SELECT
+		psd.create_time,
+		psd.total,
+		s.shop_id,
+		s.shop_name,
+		p.product_id,
+		p.product_name
+		FROM
+		tb_product_sell_daily psd,
+		tb_shop s,
+		tb_product p
+		<where>
+			psd.shop_id = s.shop_id
+			and
+			psd.product_id = p.product_id
+			<if
+				test="productSellDailyCondition.shop!=null
+			and productSellDailyCondition.shop.shopId!=null">
+				and psd.shop_id = #{productSellDailyCondition.shop.shopId}
+			</if>
+			<!-- 写like语句的时候 一般都会写成 like '% %' 在mybatis里面写就是应该是 like '%${name} %' 而不是 
+				'%#{name} %' ${name} 是不带单引号的，而#{name} 是带单引号的 -->
+			<if
+				test="productSellDailyCondition.product!=null
+			and productSellDailyCondition.product.productName!=null">
+				and p.product_name like
+				'%${productSellDailyCondition.product.productName}%'
+			</if>
+			<if test="beginTime!=null and endTime!=null">
+				and psd.create_time between #{beginTime} and #{endTime};
+			</if>
+			<if test="beginTime!=null and endTime==null">
+				and psd.create_time &gt; #{beginTime};
+			</if>
+			<if test="beginTime==null and endTime!=null">
+				and psd.create_time &lt; #{endTime};
+			</if>
+		</where>
+	</select>
+
+	<!-- 按照productId分类来统计整个平台一天之内的商品销售量 -->
+	<insert id="insertProductSellDaily"
+		parameterType="com.imooc.myo2o.entity.ProductSellDaily">
+		INSERT
+		INTO
+		tb_product_sell_daily(SELECT
+		product_id,shop_id,create_time,count(product_id) AS total FROM
+		tb_user_product_map WHERE date_format(create_time,'%Y-%m-%d') =
+		date_sub(curdate(),interval 1 day) GROUP BY product_id)
+	</insert>
+</mapper>

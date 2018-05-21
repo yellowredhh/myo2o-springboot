@@ -19,7 +19,7 @@ public interface UserAwardMapDao {
 			@Param("rowIndex") int rowIndex, @Param("pageSize") int pageSize);
 
 	/**
-	 * 配合queryUserAwardMapLIst方法的对兑换奖品记录的总数的查询
+	 * 配合queryUserAwardMapList方法的对兑换奖品记录的总数的查询
 	 * 
 	 * @param userAwardCondition
 	 * @return

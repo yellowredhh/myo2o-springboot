@@ -25,9 +25,9 @@ public class PersonInfoDaoTest{
 	public void testAInsertPersonInfo() throws Exception {
 		PersonInfo personInfo = new PersonInfo();
 		personInfo.setName("我爱你");
-		personInfo.setGender("女");
-		personInfo.setCustomerFlag(1);
-		personInfo.setShopOwnerFlag(0);
+		//必须设置3个flag,否则报错
+		personInfo.setCustomerFlag(0);
+		personInfo.setShopOwnerFlag(1);
 		personInfo.setAdminFlag(0);
 		personInfo.setCreateTime(new Date());
 		personInfo.setLastEditTime(new Date());

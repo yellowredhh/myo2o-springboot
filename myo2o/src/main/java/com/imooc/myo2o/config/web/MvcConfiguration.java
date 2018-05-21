@@ -139,7 +139,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter implements Applica
 	 * 配置拦截器,这个方法会覆盖父类的方法
 	 */
 	public void addInterceptors(InterceptorRegistry registry) {
-		String interceptorPath = "/shop/**";
+		String interceptorPath = "/sho/**";
 		// 注册一个拦截器,该拦截器用于登录校验(如果没有登录则不允许访问shopadmin下的任何页面)
 		InterceptorRegistration loginIR = registry.addInterceptor(new ShopLoginInterceptor());
 		// 添加拦截路径

@@ -4,28 +4,29 @@ import java.util.Date;
 
 /**
  * 店铺授权
+ * 
  * @author hh
  *
  */
 public class ShopAuthMap {
-	//主键
+	// 主键
 	private Long shopAuthId;
-	//雇员id,店铺id(两者组成唯一key约束)
-	private Long employeeId;
+	// 雇员id,店铺id(两者组成唯一key约束)
+	private Long employeeId;// 这个employeeId就是personinfo中userid(所以这个employeeId不能随便输入,这个是外键关联的)
 	private Long shopId;
 
 	private String name;
-	//职称名(店员还是经理之类的)
+	// 职称名(店员还是经理之类的)
 	private String title;
-	//职称符号(用于做权限控制)
+	// 职称符号(用于做权限控制)
 	private Integer titleFlag;
-	//授权有效状态,0,无效,1,有效
+	// 授权有效状态,0,无效,1,有效
 	private Integer enableStatus;
-	//创建时间
+	// 创建时间
 	private Date createTime;
-	//最近一次更新时间
+	// 最近一次更新时间
 	private Date lastEditTime;
-	//雇员和店铺实体类
+	// 雇员和店铺实体类
 	private PersonInfo employee;
 	private Shop shop;
 

@@ -14,18 +14,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.imooc.myo2o.entity.ShopAuthMap;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ShopAuthMapDaoTest{
+public class ShopAuthMapDaoTest {
 	@Autowired
 	private ShopAuthMapDao shopAuthMapDao;
 
 	@Test
 	public void testAInsertShopAuthMap() throws Exception {
 		ShopAuthMap shopAuthMap = new ShopAuthMap();
-		shopAuthMap.setEmployeeId(2L);
-		shopAuthMap.setShopId(2L);
+		shopAuthMap.setEmployeeId(8L); // 这个employeeId不要乱写,这个和PersonInfo中userId是外键关联关系
+		shopAuthMap.setShopId(15L); // shopId和Shop表格中shopId外键关联
 		shopAuthMap.setName("test1");
 		shopAuthMap.setTitle("CEO");
 		shopAuthMap.setTitleFlag(1);
@@ -38,18 +39,19 @@ public class ShopAuthMapDaoTest{
 
 	@Test
 	public void testBQueryShopAuthMapListByShopId() throws Exception {
-       List<ShopAuthMap> shopAuthMapList = shopAuthMapDao.queryShopAuthMapListByShopId(1, 1, 1);
-       assertEquals(1, shopAuthMapList.size());
-       shopAuthMapList = shopAuthMapDao.queryShopAuthMapListByShopId(1, 0, 2);
-       assertEquals(2, shopAuthMapList.size());
-       int count = shopAuthMapDao.queryShopAuthCountByShopId(1);
-       assertEquals(2, count);
+		List<ShopAuthMap> shopAuthMapList = shopAuthMapDao.queryShopAuthMapListByShopId(15, 0, 3);
+		assertEquals(1, shopAuthMapList.size());
+		shopAuthMapList = shopAuthMapDao.queryShopAuthMapListByShopId(28, 0, 3);
+		assertEquals(1, shopAuthMapList.size());
+		int count = shopAuthMapDao.queryShopAuthCountByShopId(28);
+		assertEquals(1, count);
 	}
 
 	@Test
 	public void testCUpdateShopAuthMap() throws Exception {
 		ShopAuthMap shopAuthMap = new ShopAuthMap();
-		shopAuthMap.setShopAuthId(1L);
+		shopAuthMap.setShopAuthId(27L);
+		shopAuthMap.setShopId(15L);
 		shopAuthMap.setTitle("CCO");
 		shopAuthMap.setTitleFlag(2);
 		int effectedNum = shopAuthMapDao.updateShopAuthMap(shopAuthMap);
@@ -58,9 +60,9 @@ public class ShopAuthMapDaoTest{
 
 	@Test
 	public void testDeleteShopAuthMap() throws Exception {
-		long employeeId = 2;
-		long shopId = 2;
-		int effectedNum = shopAuthMapDao.deleteShopAuthMap(employeeId, shopId);
+		long shopAuthId = 26L;
+		long shopId = 28L;
+		int effectedNum = shopAuthMapDao.deleteShopAuthMap(shopAuthId, shopId);
 		assertEquals(1, effectedNum);
 	}
 }

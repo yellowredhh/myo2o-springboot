@@ -3,26 +3,29 @@ package com.imooc.myo2o.entity;
 import java.util.Date;
 
 /**
- * 顾客已经领取的奖品的映射
+ * (这UserAwardMap,UserProductMap,UserShopMap都是和积分有关的实体类,第一个用于关联用户和奖品之间的积分机制,比如用户领取了这个奖品,则积分要减去对应的值,第二个用于关联用户和商品之间的机制,比如用户买一个商品增加了多少积分,第三个用于关联用户和店铺之间的积分机制,比如某一个用户在某一个店铺有多少积分)
+ * 
+ * 顾客领取的奖品的映射
+ * 
  * @author hh
  *
  */
 public class UserAwardMap {
-	//主键id
+	// 主键id
 	private Long userAwardId;
-	//用户id,奖品id,店铺id
+	// 用户id,奖品id,店铺id
 	private Long userId;
 	private Long awardId;
 	private Long shopId;
-	//用户姓名,奖品名称,过期时间
+	// 用户姓名,奖品名称,过期时间
 	private String userName;
 	private String awardName;
 	private Date expireTime;
-	//创建时间,使用状态(0表示未兑换,1表示已经兑换),兑换该奖品所需要的积分
+	// 创建时间,使用状态(0表示未兑换,1表示已经兑换),兑换该奖品所需要的积分
 	private Date createTime;
 	private Integer usedStatus;
 	private Integer point;
-	//顾客实体类,奖品实体类,店铺实体类
+	// 顾客实体类,奖品实体类,店铺实体类
 	private PersonInfo user;
 	private Award award;
 	private Shop shop;

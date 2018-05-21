@@ -1,10 +1,8 @@
 $(function() {
-	var shopId = 1;
 	// 获取此店铺的商品列表的url:这个url所指向的后台方法会把基于同样的查询条件下的商品列表和商品数量都查询出来(调用了两个底层dao方法)
-	var listUrl = '/myo2o/shopadmin/getproductlistbyshop?pageIndex=1&pageSize=9999&shopId='
-			+ shopId;
-	//更改商品上\下架的url
-	var deleteUrl = '/myo2o/shopadmin/modifyproduct';
+	var listUrl = '/myo2o/shop/getproductlistbyshop?pageIndex=1&pageSize=9999';
+	// 更改商品上\下架的url
+	var deleteUrl = '/myo2o/shop/modifyproduct';
 
 	function getList() {
 		// 从后台获取此商铺的商品列表
@@ -61,20 +59,20 @@ $(function() {
 
 	getList();
 
-	//点击上\下架时调用的函数(这个函数也会调用后台的modifyProduct方法,只是这里设置了statusChange为true,所以不需要验证码
+	// 点击上\下架时调用的函数(这个函数也会调用后台的modifyProduct方法,只是这里设置了statusChange为true,所以不需要验证码
 	function deleteItem(id, enableStatus) {
-		//定义product JSON并设置productId以及状态(上\下架).
+		// 定义product JSON并设置productId以及状态(上\下架).
 		var product = {};
 		product.productId = id;
 		product.enableStatus = enableStatus;
 		$.confirm('确定么?', function() {
-			//上下架相关商品
+			// 上下架相关商品
 			$.ajax({
 				url : deleteUrl,
 				type : 'POST',
 				data : {
 					productStr : JSON.stringify(product),
-					//这个statusChange已经在Controller层开了一个口子,所以后台可以拿到的.
+					// 这个statusChange已经在Controller层开了一个口子,所以后台可以拿到的.
 					statusChange : true
 				},
 				dataType : 'json',
@@ -100,7 +98,7 @@ $(function() {
 						var target = $(e.currentTarget);
 						if (target.hasClass('edit')) {
 							// 如果有class edit,则点击就进入店铺信息编辑界面,并带有productId参数
-							window.location.href = '/myo2o/shopadmin/productoperation?productId='
+							window.location.href = '/myo2o/shop/productedit?productId='
 									+ e.currentTarget.dataset.id;
 						} else if (target.hasClass('delete')) {
 							// 如果有class
@@ -115,6 +113,6 @@ $(function() {
 					});
 
 	$('#new').click(function() {
-		window.location.href = '/myo2o/shopadmin/productoperation';
+		window.location.href = '/myo2o/shop/productedit';
 	});
 });

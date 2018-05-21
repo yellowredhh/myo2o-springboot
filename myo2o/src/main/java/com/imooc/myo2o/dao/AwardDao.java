@@ -35,7 +35,7 @@ public interface AwardDao {
 	Award queryAwardByAwardId(long awardId);
 
 	/**
-	 * 插入奖品
+	 * 添加奖品信息
 	 * 
 	 * @param award
 	 * @return

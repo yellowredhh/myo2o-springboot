@@ -3,7 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.imooc.myo2o.dao.ShopAuthMapDao">
-	<resultMap id="shopAuthResultMap" type="com.imooc.myo2o.entity.ShopAuthMap">
+	<resultMap id="shopAuthResultMap"
+		type="com.imooc.myo2o.entity.ShopAuthMap">
 		<id column="shop_auth_id" property="shopAuthId" />
 		<result column="employee_id" property="employeeId" />
 		<result column="shop_id" property="shopId" />
@@ -46,7 +47,9 @@
 			<result column="advice" property="advice" />
 		</association>
 	</resultMap>
-	<select id="queryShopAuthMapListByShopId" resultMap="shopAuthResultMap">
+
+	<select id="queryShopAuthMapListByShopId"
+		resultMap="shopAuthResultMap">
 		SELECT
 		shop_auth_id,
 		employee_id,
@@ -64,6 +67,7 @@
 		#{shopId}
 		LIMIT #{rowIndex},#{pageSize};
 	</select>
+
 	<select id="queryShopAuthCountByShopId" resultType="int">
 		SELECT
 		count(1)
@@ -72,6 +76,7 @@
 		WHERE
 		shop_id = #{shopId}
 	</select>
+
 	<select id="queryShopAuthMapById" resultMap="shopAuthResultMap">
 		SELECT
 		shop_auth_id,
@@ -98,7 +103,9 @@
 		(#{employeeId},#{shopId},#{name},
 		#{title},#{titleFlag},#{createTime},#{lastEditTime},#{enableStatus})
 	</insert>
-	<update id="updateShopAuthMap" parameterType="com.imooc.myo2o.entity.ShopAuthMap"
+
+	<update id="updateShopAuthMap"
+		parameterType="com.imooc.myo2o.entity.ShopAuthMap"
 		keyProperty="shop_auth_id" useGeneratedKeys="true">
 		UPDATE tb_shop_auth_map
 		<set>
@@ -111,6 +118,7 @@
 		WHERE shop_auth_id=#{shopAuthId}
 		AND shop_id=#{shopId}
 	</update>
+
 	<delete id="deleteShopAuthMap">
 		DELETE FROM
 		tb_shop_auth_map
@@ -119,7 +127,4 @@
 		#{shopAuthId}
 		AND shop_id=#{shopId}
 	</delete>
-
-
-
 </mapper>

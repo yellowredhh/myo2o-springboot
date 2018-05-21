@@ -28,21 +28,27 @@
 			<result column="create_time" property="createTime" />
 			<result column="last_edit_time" property="lastEditTime" />
 		</association>
-		<association property="shopCategory" column="shop_category_id"
+		<association property="shopCategory"
+			column="shop_category_id"
 			javaType="com.imooc.myo2o.entity.ShopCategory">
 			<id column="shop_category_id" property="shopCategoryId" />
-			<result column="shop_category_name" property="shopCategoryName" />
-			<result column="shop_category_desc" property="shopCategoryDesc" />
+			<result column="shop_category_name"
+				property="shopCategoryName" />
+			<result column="shop_category_desc"
+				property="shopCategoryDesc" />
 			<result column="shop_category_img" property="shopCategoryImg" />
 			<result column="priority" property="priority" />
 			<result column="create_time" property="createTime" />
 			<result column="last_edit_time" property="lastEditTime" />
 		</association>
-		<association property="parentCategory" column="parent_category_id"
+		<association property="parentCategory"
+			column="parent_category_id"
 			javaType="com.imooc.myo2o.entity.ShopCategory">
 			<id column="parent_category_id" property="shopCategoryId" />
-			<result column="shop_category_name" property="shopCategoryName" />
-			<result column="shop_category_desc" property="shopCategoryDesc" />
+			<result column="shop_category_name"
+				property="shopCategoryName" />
+			<result column="shop_category_desc"
+				property="shopCategoryDesc" />
 			<result column="shop_category_img" property="shopCategoryImg" />
 			<result column="priority" property="priority" />
 			<result column="create_time" property="createTime" />
@@ -88,6 +94,9 @@
 		<where>
 			<if test="shopCondition.shopId!=null">
 				and shop_id = #{shopCondition.shopId}
+			</if>
+			<if test="shopCondition.ownerId!=null">
+				and owner_id = #{shopCondition.ownerId}
 			</if>
 			<if
 				test="shopCondition.shopCategory!=null
@@ -208,7 +217,8 @@
 		#{enableStatus},#{advice})
 	</insert>
 
-	<update id="updateShop" parameterType="com.imooc.myo2o.entity.Shop">
+	<update id="updateShop"
+		parameterType="com.imooc.myo2o.entity.Shop">
 		update tb_shop
 		<set>
 			<if test="shopName != null">shop_name=#{shopName},</if>
@@ -229,7 +239,8 @@
 		where shop_id=#{shopId}
 	</update>
 
-	<delete id="deleteShop" parameterType="com.imooc.myo2o.entity.Shop">
+	<delete id="deleteShop"
+		parameterType="com.imooc.myo2o.entity.Shop">
 		delete from tb_shop where
 		shop_id = #{shopId}
 	</delete>

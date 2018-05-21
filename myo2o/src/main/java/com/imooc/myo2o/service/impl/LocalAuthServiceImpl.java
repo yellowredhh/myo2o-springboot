@@ -48,20 +48,20 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 	@Override
 	@Transactional
 	public LocalAuthExecution register(LocalAuth localAuth, ImageHolder imageHolder) throws RuntimeException {
-		//空值判定(必须要有用户信息才能注册,也就是密码和用户名都不能为空,用户名是唯一约束)
+		// 空值判定(必须要有用户信息才能注册,也就是密码和用户名都不能为空,用户名是唯一约束)
 		if (localAuth == null || localAuth.getPassword() == null || localAuth.getUserName() == null) {
 			return new LocalAuthExecution(LocalAuthStateEnum.NULL_AUTH_INFO);
 		}
 		try {
-			//设置默认信息
+			// 设置默认信息
 			localAuth.setCreateTime(new Date());
 			localAuth.setLastEditTime(new Date());
-			//调用MD5工具对密码进行加密
+			// 调用MD5工具对密码进行加密
 			localAuth.setPassword(MD5.getMd5(localAuth.getPassword()));
-			//如果用户信息不为空并且userId不为空
+			// 如果用户信息不为空并且userId为空(注意是userId要为空,因为第一次注册在数据中肯定是没有userId,需要调用了insertPersonInfo方法后再personInfo表中添加了数据之后才会生出主键userId,然后把这个userId赋给localAuth的userId属性
 			if (localAuth.getPersonInfo() != null && localAuth.getPersonInfo().getUserId() == null) {
 				if (imageHolder != null) {
-					//如果传入了头像
+					// 如果传入了头像
 					localAuth.getPersonInfo().setCreateTime(new Date());
 					localAuth.getPersonInfo().setLastEditTime(new Date());
 					localAuth.getPersonInfo().setEnableStatus(1);
@@ -73,7 +73,7 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 				}
 				try {
 					PersonInfo personInfo = localAuth.getPersonInfo();
-					//添加本地账号
+					// 添加用户信息(在personinfo表中添加用户会生成一条新的数据也就是会生成userid,把生成的userid设置到localAuth对象中
 					int effectedNum = personInfoDao.insertPersonInfo(personInfo);
 					localAuth.setUserId(personInfo.getUserId());
 					if (effectedNum <= 0) {
@@ -83,6 +83,7 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 					throw new RuntimeException("insertPersonInfo error: " + e.getMessage());
 				}
 			}
+			// 添加本地账号
 			int effectedNum = localAuthDao.insertLocalAuth(localAuth);
 			if (effectedNum <= 0) {
 				throw new RuntimeException("帐号创建失败");
@@ -100,24 +101,24 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 	@Override
 	@Transactional
 	public LocalAuthExecution bindLocalAuth(LocalAuth localAuth) throws RuntimeException {
-		//空值判定,用户信息不为空才继续
+		// 空值判定,用户信息不为空才继续
 		if (localAuth == null || localAuth.getPassword() == null || localAuth.getUserName() == null
 				|| localAuth.getUserId() == null) {
 			return new LocalAuthExecution(LocalAuthStateEnum.NULL_AUTH_INFO);
 		}
-		//根据传入的用户信息获取本地账号
+		// 根据传入的用户信息获取本地账号
 		LocalAuth tempAuth = localAuthDao.queryLocalByUserId(localAuth.getUserId());
-		//如果已经绑定过了,则直接返回,避免重复绑定
+		// 如果已经绑定过了,则直接返回,避免重复绑定
 		if (tempAuth != null) {
 			return new LocalAuthExecution(LocalAuthStateEnum.ONLY_ONE_ACCOUNT);
 		}
 		try {
 			localAuth.setCreateTime(new Date());
 			localAuth.setLastEditTime(new Date());
-			//对密码进行MD5加密
+			// 对密码进行MD5加密
 			localAuth.setPassword(MD5.getMd5(localAuth.getPassword()));
 			int effectedNum = localAuthDao.insertLocalAuth(localAuth);
-			//判定绑定是否成功
+			// 判定绑定是否成功
 			if (effectedNum <= 0) {
 				throw new RuntimeException("帐号绑定失败");
 			} else {
@@ -131,11 +132,11 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 	@Override
 	@Transactional
 	public LocalAuthExecution modifyLocalAuth(Long userId, String userName, String password, String newPassword) {
-		//判断userId是否为空,新旧密码是否相同,如果不满足条件则返回错误
+		// 判断userId是否为空,新旧密码是否相同,如果不满足条件则返回错误
 		if (userId != null && userName != null && password != null && newPassword != null
 				&& !password.equals(newPassword)) {
 			try {
-				//对新密码进行MD5加密
+				// 对新密码进行MD5加密
 				int effectedNum = localAuthDao.updateLocalAuth(userId, userName, MD5.getMd5(password),
 						MD5.getMd5(newPassword), new Date());
 				if (effectedNum <= 0) {
@@ -152,6 +153,7 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 
 	/**
 	 * 添加头像的方法
+	 * 
 	 * @param localAuth
 	 * @param imageHolder
 	 */

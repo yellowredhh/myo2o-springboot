@@ -8,7 +8,7 @@ import com.imooc.myo2o.entity.UserProductMap;
 
 public interface UserProductMapDao {
 	/**
-	 * 
+	 * 根据查询条件返回用户购买商品的信息列表
 	 * @param userProductCondition
 	 * @param rowIndex
 	 * @param pageSize
@@ -19,7 +19,7 @@ public interface UserProductMapDao {
 			@Param("rowIndex") int rowIndex, @Param("pageSize") int pageSize);
 
 	/**
-	 * 
+	 * 配合queryUserProductMapList方法获取列表子元素的个数
 	 * @param userProductCondition
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public interface UserProductMapDao {
 			@Param("userProductCondition") UserProductMap userProductCondition);
 
 	/**
-	 * 
+	 * 插入一条用户购买的商品的记录
 	 * @param userProductMap
 	 * @return
 	 */

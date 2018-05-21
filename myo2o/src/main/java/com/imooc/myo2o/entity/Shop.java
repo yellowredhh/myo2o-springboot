@@ -7,23 +7,29 @@ import java.util.List;
  * 店铺
  */
 public class Shop {
-
+	//主键
 	private Long shopId;
+	//店铺拥有着id,店铺类别(属于哪一个一级店铺),店铺名称
 	private Long ownerId;
 	private Long shopCategoryId;
 	private String shopName;
+	//店铺描述信息,店铺地址,店铺电话
 	private String shopDesc;
 	private String shopAddr;
 	private String phone;
+	//店铺缩略图,店铺经度,纬度
 	private String shopImg;
 	private Double longitude;
 	private Double latitude;
+	//权重,创建时间,最后一次更新时间
 	private Integer priority;
 	private Date createTime;
 	private Date lastEditTime;
+	//店铺可用状态,建议
 	private Integer enableStatus;
 	private String advice;
-
+	
+	//店铺职员列表,区域,店铺类别,店铺父类别
 	private List<ShopAuthMap> staffList;
 	private Area area;
 	private ShopCategory shopCategory;
