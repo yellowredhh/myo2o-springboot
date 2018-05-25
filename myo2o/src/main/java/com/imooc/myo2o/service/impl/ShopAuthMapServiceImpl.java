@@ -3,6 +3,8 @@ package com.imooc.myo2o.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,7 @@ import com.imooc.myo2o.dto.ShopAuthMapExecution;
 import com.imooc.myo2o.entity.ShopAuthMap;
 import com.imooc.myo2o.enums.ShopAuthMapStateEnum;
 import com.imooc.myo2o.service.ShopAuthMapService;
+import com.imooc.myo2o.util.HttpServletRequestUtil;
 import com.imooc.myo2o.util.PageCalculator;
 
 @Service
@@ -41,6 +44,11 @@ public class ShopAuthMapServiceImpl implements ShopAuthMapService {
 	}
 
 	@Override
+	public ShopAuthMap getShopAuthMapById(Long shopAuthId) {
+		return shopAuthMapDao.queryShopAuthMapById(shopAuthId);
+	}
+
+	@Override
 	@Transactional
 	public ShopAuthMapExecution addShopAuthMap(ShopAuthMap shopAuthMap) throws RuntimeException {
 		// 空值判定(店铺id和员工id的非空判定)
@@ -49,6 +57,7 @@ public class ShopAuthMapServiceImpl implements ShopAuthMapService {
 			shopAuthMap.setCreateTime(new Date());
 			shopAuthMap.setLastEditTime(new Date());
 			shopAuthMap.setEnableStatus(1);
+			shopAuthMap.setTitleFlag(0);// 用于职称权限控制
 			try {
 				// 添加授权信息
 				int effectedNum = shopAuthMapDao.insertShopAuthMap(shopAuthMap);
@@ -85,14 +94,22 @@ public class ShopAuthMapServiceImpl implements ShopAuthMapService {
 	}
 
 	@Override
-	public ShopAuthMapExecution removeShopAuthMap(Long shopAuthMapId) throws RuntimeException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ShopAuthMap getShopAuthMapById(Long shopAuthId) {
-		return shopAuthMapDao.queryShopAuthMapById(shopAuthId);
+	public ShopAuthMapExecution removeShopAuthMap(Long shopAuthMapId, Long shopId) throws RuntimeException {
+		// 控制判断,主要是对授权Id做校验
+		if (shopAuthMapId == null || shopId == null) {
+			return new ShopAuthMapExecution(ShopAuthMapStateEnum.NULL_SHOPAUTH_ID);
+		} else {
+			try {
+				int effectedNum = shopAuthMapDao.deleteShopAuthMap(shopAuthMapId, shopId);
+				if (effectedNum <= 0) {
+					return new ShopAuthMapExecution(ShopAuthMapStateEnum.INNER_ERROR);
+				} else {// 删除成功
+					return new ShopAuthMapExecution(ShopAuthMapStateEnum.SUCCESS);
+				}
+			} catch (Exception e) {
+				throw new RuntimeException("deleteShopByOwner error: " + e.getMessage());
+			}
+		}
 	}
 
 }

@@ -49,7 +49,7 @@ public interface ShopAuthMapDao {
 	 * @param shopId
 	 * @return effectedNum
 	 */
-	int deleteShopAuthMap(@Param("shopAuthId") long employeeId, @Param("shopId") long shopId);
+	int deleteShopAuthMap(@Param("shopAuthId") long shopAuthId, @Param("shopId") long shopId);
 
 	/**
 	 * 通过shopAuthId查询员工授权信息

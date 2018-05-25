@@ -27,9 +27,13 @@ public class AwardServiceImpl implements AwardService {
 
 	@Override
 	public AwardExecution getAwardList(Award awardCondition, int pageIndex, int pageSize) {
+		// 页转行
 		int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+		// 根据查询条件返回奖品列表
 		List<Award> awardList = awardDao.queryAwardList(awardCondition, rowIndex, pageSize);
+		// 基于同样的查询条件查询结果总数
 		int count = awardDao.queryAwardCount(awardCondition);
+		// 拼接两个查询结果
 		AwardExecution ae = new AwardExecution();
 		ae.setAwardList(awardList);
 		ae.setCount(count);
@@ -45,13 +49,17 @@ public class AwardServiceImpl implements AwardService {
 	@Transactional
 	public AwardExecution addAward(Award award, ImageHolder imageHolder) {
 		if (award != null && award.getShopId() != null) {
+			// 设置默认信息
 			award.setCreateTime(new Date());
 			award.setLastEditTime(new Date());
+			// 默认可用
 			award.setEnableStatus(1);
 			if (imageHolder != null) {
+				// 如果传入了奖品图片则添加图片,获取相对路径
 				addThumbnail(award, imageHolder);
 			}
 			try {
+				// 插入奖品信息
 				int effectedNum = awardDao.insertAward(award);
 				if (effectedNum <= 0) {
 					throw new RuntimeException("创建商品失败");
@@ -70,14 +78,17 @@ public class AwardServiceImpl implements AwardService {
 	public AwardExecution modifyAward(Award award, ImageHolder imageHolder) {
 		if (award != null && award.getShopId() != null) {
 			award.setLastEditTime(new Date());
-			if (imageHolder != null) {
+			if (imageHolder != null) { // 如果要修改奖品的图片
+				// 先查询出奖品的原图片地址
 				Award tempAward = awardDao.queryAwardByAwardId(award.getAwardId());
-				if (tempAward.getAwardImg() != null) {
+				if (tempAward.getAwardImg() != null) { // 如果奖品之前存在图片信息,则进行删除
 					ImageUtils.deleteFileOrPath(tempAward.getAwardImg());
 				}
+				// 添加新传入的图片
 				addThumbnail(award, imageHolder);
 			}
 			try {
+				// 更新奖品信息
 				int effectedNum = awardDao.updateAward(award);
 				if (effectedNum <= 0) {
 					throw new RuntimeException("更新商品信息失败");

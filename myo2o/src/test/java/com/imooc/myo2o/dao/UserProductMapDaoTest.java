@@ -2,8 +2,11 @@ package com.imooc.myo2o.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -28,25 +31,28 @@ public class UserProductMapDaoTest {
 
 	@Test
 	public void testAInsertUserProductMap() throws Exception {
-		// 用户购买的第一个商品信息
-		UserProductMap userProductMap = new UserProductMap();
-		userProductMap.setUserId(8L);
-		userProductMap.setProductId(6L);
-		userProductMap.setShopId(16L);
-		userProductMap.setUserName(personInfoDao.queryPersonInfoById(8L).getName());
-		userProductMap.setProductName(productDao.queryProductByProductId(6L).getProductName());
-		userProductMap.setCreateTime(new Date());
-		int effectedNum = userProductMapDao.insertUserProductMap(userProductMap);
-		assertEquals(1, effectedNum);
-		// 用户购买的第二个商品信息
-		userProductMap.setUserId(8L);
-		userProductMap.setProductId(5L);
-		userProductMap.setShopId(15L);
-		userProductMap.setUserName(personInfoDao.queryPersonInfoById(8L).getName());
-		userProductMap.setProductName(productDao.queryProductByProductId(5L).getProductName());
-		userProductMap.setCreateTime(new Date());
-		effectedNum = userProductMapDao.insertUserProductMap(userProductMap);
-		assertEquals(1, effectedNum);
+		// 同一个店铺的三种商品的近一周的销量
+		for (long productId = 10; productId < 13; productId++) {
+			for (int i = 1; i < 8; i++) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.add(calendar.DATE, -i);
+				Date date = calendar.getTime();
+				int random = new Random().nextInt(10);
+				UserProductMap userProductMap = new UserProductMap();
+				userProductMap.setUserId(8L);
+				userProductMap.setProductId(productId);
+				userProductMap.setShopId(20L);
+				userProductMap.setUserName(personInfoDao.queryPersonInfoById(8L).getName());
+				userProductMap.setProductName(productDao.queryProductByProductId(productId).getProductName());
+				userProductMap.setCreateTime(date);
+				int effectedNum = 0;
+				for (int j = 0; j < random; j++) {
+					effectedNum = userProductMapDao.insertUserProductMap(userProductMap);
+					effectedNum++;
+				}
+				System.out.println("商品id为" + productId + "在" + date + "的销量是" + effectedNum);
+			}
+		}
 	}
 
 	@Test

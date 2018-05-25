@@ -37,9 +37,12 @@ $(function() {
 				var total = $('.list-div .card').length;
 				if (total >= maxItems) {
 					// 加载完毕，则注销无限加载事件，以防不必要的加载
-					$.detachInfiniteScroll($('.infinite-scroll'));
+					// $.detachInfiniteScroll($('.infinite-scroll'));
 					// 删除加载提示符
-					$('.infinite-scroll-preloader').remove();
+					// $('.infinite-scroll-preloader').remove();
+					$('.infinite-scroll-preloader').hide();// 修复bug,不能删除这个无极滚动提示符.加载完成后应该隐藏无极滚动提示符
+				} else {
+					$('.infinite-scroll-preloader').show();
 				}
 				pageNum += 1;
 				loading = false;
@@ -56,7 +59,7 @@ $(function() {
 		addItems(pageSize, pageNum);
 	});
 
-	$('#search').on('input', function(e) {
+	$('#search').on('change', function(e) {
 		productName = e.target.value;
 		$('.list-div').empty();
 		pageNum = 1;

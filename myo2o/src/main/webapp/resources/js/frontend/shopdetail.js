@@ -5,8 +5,9 @@ $(function() {// shopdetail.js和shoplist.js差不多,都实现了无极滚动,�
 
 	// 获取商品列表的url
 	var listUrl = '/myo2o/frontend/listproductsbyshop';
-
+	// 默认的页码
 	var pageNum = 1;
+	// 从地址栏中取出shopId
 	var shopId = getQueryString('shopId');
 	var productCategoryId = '';
 	var productName = '';
@@ -14,6 +15,10 @@ $(function() {// shopdetail.js和shoplist.js差不多,都实现了无极滚动,�
 	// 获取店铺信息以及店铺商品分类列表的url
 	var searchDivUrl = '/myo2o/frontend/listshopdetailpageinfo?shopId='
 			+ shopId;
+
+	// 点击兑换奖品按钮触发的事件
+	$('exchangelist')
+			.attr("href", "/myo2o/frontend/awardlist?shopId=" + shopId);
 
 	// 获取店铺信息以及店铺商品分类列表
 	function getSearchDivData() {

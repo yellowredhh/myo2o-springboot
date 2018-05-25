@@ -1,7 +1,6 @@
 $(function() {
 	// 这个shopauthedit页面时从shopauthmanage中的编辑按钮跳转过来的(这个跳转的时候会带有shopAuthId)
 	var shopAuthId = getQueryString('shopAuthId');
-	shopAuthId = 1;
 	var infoUrl = '/myo2o/shop/getshopauthmapbyid?shopAuthId=' + shopAuthId;
 
 	// 编辑完后更新编辑信息的url
@@ -17,6 +16,7 @@ $(function() {
 	}
 
 	function getInfo(id) {
+		// 访问后台的shop/getshopauthmapbyid方法获取到当前要编辑的授权信息的相关信息(就两个,一个是雇员,一个是职位)
 		$.getJSON(infoUrl, function(data) {
 			if (data.success) {
 				var shopAuthMap = data.shopAuthMap;
@@ -29,6 +29,7 @@ $(function() {
 	// 编辑完之后要更新shopAuthMap,所以要调用modifyshopauthmap方法
 	$('#submit').click(function() {
 		var shopAuth = {};
+		// 获取编辑之后的新的雇员名字和职位
 		shopAuth.name = $('#shopauth-name').val();
 		shopAuth.title = $('#title').val();
 		shopAuth.shopAuthId = shopAuthId;
@@ -42,6 +43,7 @@ $(function() {
 			type : 'POST',
 			contentType : "application/x-www-form-urlencoded; charset=utf-8",
 			data : {
+				// 将JSON参数转化为字符串
 				shopAuthMapStr : JSON.stringify(shopAuth),
 				verifyCodeActual : verifyCodeActual
 			},

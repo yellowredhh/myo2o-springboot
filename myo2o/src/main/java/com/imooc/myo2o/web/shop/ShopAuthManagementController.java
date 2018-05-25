@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpUpgradeHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,7 @@ public class ShopAuthManagementController {
 	@ResponseBody
 	private Map<String, Object> listShopAuthMapsByShop(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
-		// 接收分页信息
+		// 取出分页信息
 		int pageIndex = HttpServletRequestUtil.getInt(request, "pageIndex");
 		int pageSize = HttpServletRequestUtil.getInt(request, "pageSize");
 		// 从session中获取currentShop
@@ -93,6 +94,7 @@ public class ShopAuthManagementController {
 		}
 		if (shopAuthMap != null) {
 			try {
+				// 从session中获取当前店铺信息和当前登录用户的信息,只有当前登录用户为当前店铺的拥有着时才能进行授权管理操作
 				Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
 				PersonInfo user = (PersonInfo) request.getSession().getAttribute("user");
 				// 必须是本店的店主才能进行添加店铺授权信息的操作
@@ -132,7 +134,7 @@ public class ShopAuthManagementController {
 	 */
 	@RequestMapping(value = "/modifyshopauthmap", method = RequestMethod.POST)
 	@ResponseBody
-	private Map<String, Object> modifyShopAuthMap(String shopAuthMapStr, HttpServletRequest request) {
+	private Map<String, Object> modifyShopAuthMap(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		// 验证码校验
 		if (!CodeUtil.checkVerifyCode(request)) {
@@ -142,6 +144,7 @@ public class ShopAuthManagementController {
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		ShopAuthMap shopAuthMap = null;
+		String shopAuthMapStr = HttpServletRequestUtil.getString(request, "shopAuthMapStr");
 		try {
 			// 将前台传入的字符串json转换成shopAuthMap实例
 			shopAuthMap = mapper.readValue(shopAuthMapStr, ShopAuthMap.class);
@@ -177,13 +180,24 @@ public class ShopAuthManagementController {
 		return modelMap;
 	}
 
-	@RequestMapping(value = "/removeshopauthmap", method = RequestMethod.GET)
+	/**
+	 * 删除授权信息的方法
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/removeshopauthmap", method = RequestMethod.POST)
 	@ResponseBody
-	private Map<String, Object> removeShopAuthMap(Long shopAuthId) {
+	private Map<String, Object> removeShopAuthMap(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
-		if (shopAuthId != null && shopAuthId > 0) {
+		// 从session中获取shopId
+		Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
+		Long shopId = currentShop.getShopId();
+		// 从POST请求体中获取到shopAuthId.
+		Long shopAuthMapId = HttpServletRequestUtil.getLong(request, "shopAuthId");
+		if (shopAuthMapId > 0) {
 			try {
-				ShopAuthMapExecution se = shopAuthMapService.removeShopAuthMap(shopAuthId);
+				ShopAuthMapExecution se = shopAuthMapService.removeShopAuthMap(shopAuthMapId, shopId);
 				if (se.getState() == ShopAuthMapStateEnum.SUCCESS.getState()) {
 					modelMap.put("success", true);
 				} else {

@@ -17,16 +17,16 @@ public class UserShopMapServiceImpl implements UserShopMapService {
 	private UserShopMapDao userShopMapDao;
 
 	@Override
-	public UserShopMapExecution listUserShopMap(
-			UserShopMap userShopMapCondition, int pageIndex, int pageSize) {
+	public UserShopMapExecution listUserShopMap(UserShopMap userShopMapCondition, int pageIndex, int pageSize) {
+		// 空值判定
 		if (userShopMapCondition != null && pageIndex != -1 && pageSize != -1) {
-			int beginIndex = PageCalculator.calculateRowIndex(pageIndex,
+			// 行页转换
+			int beginIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+			// 根据查询条件分页查询
+			List<UserShopMap> userShopMapList = userShopMapDao.queryUserShopMapList(userShopMapCondition, beginIndex,
 					pageSize);
-			List<UserShopMap> userShopMapList = userShopMapDao
-					.queryUserShopMapList(userShopMapCondition, beginIndex,
-							pageSize);
-			int count = userShopMapDao
-					.queryUserShopMapCount(userShopMapCondition);
+			// 基于同样的查询条件查询结果总数
+			int count = userShopMapDao.queryUserShopMapCount(userShopMapCondition);
 			UserShopMapExecution ue = new UserShopMapExecution();
 			ue.setUserShopMapList(userShopMapList);
 			ue.setCount(count);
@@ -35,5 +35,11 @@ public class UserShopMapServiceImpl implements UserShopMapService {
 			return null;
 		}
 
+	}
+
+	@Override
+	public UserShopMap getUserShopMap(long userId, long shopId) {
+		UserShopMap userShopMap = userShopMapDao.queryUserShopMap(userId, shopId);
+		return userShopMap;
 	}
 }

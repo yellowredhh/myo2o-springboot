@@ -3,6 +3,8 @@ $(function() {
 	var listUrl = '/myo2o/shop/listshopauthmapsbyshop?pageIndex=1&pageSize=9999';
 	// 修改授权信息的URL
 	var deleteUrl = '/myo2o/shop/removeshopauthmap';
+	// 新增授权信息URL
+	var addUrl = '/myo2o/shop/addshopauthmap';
 
 	function getList() {
 		$.getJSON(listUrl, function(data) {
@@ -81,7 +83,14 @@ $(function() {
 						}
 					});
 
-	// $('#new').click(function () {
-	// window.location.href = '/myo2o/shop/shopauthedit';
-	// });
+	$('#new')
+			.click(
+					function() {
+						var tempHtml = '<div class="row row-shopauth">'
+								+ '<div class="col-40"><input class="shopauth-input category" type="text" placeholder="雇员"></div>'
+								+ '<div class="col-20"><input class="shopauth-input priority" type="text" placeholder="职位"></div>'
+								+ '<div class="col-40"><a href="#" class="edit">编辑</a><a href="#" class="delete">删除</a></div>'
+								+ '</div>';
+						$('.shopauth-wrap').append(tempHtml);
+					});
 });

@@ -7,6 +7,7 @@ import com.imooc.myo2o.entity.Award;
 public interface AwardService {
 
 	/**
+	 * 根据传入的条件分页返回奖品列表,并返回该查询条件下的总数
 	 * 
 	 * @param awardCondition
 	 * @param pageIndex
@@ -16,6 +17,7 @@ public interface AwardService {
 	AwardExecution getAwardList(Award awardCondition, int pageIndex, int pageSize);
 
 	/**
+	 * 根据奖品id查询奖品
 	 * 
 	 * @param awardId
 	 * @return
@@ -23,6 +25,7 @@ public interface AwardService {
 	Award getAwardById(long awardId);
 
 	/**
+	 * 添加奖品信息(包括奖品的图片)
 	 * 
 	 * @param award
 	 * @param thumbnail
@@ -31,6 +34,7 @@ public interface AwardService {
 	AwardExecution addAward(Award award, ImageHolder imageHolder);
 
 	/**
+	 * 修改奖品(包括更换奖品图片)
 	 * 
 	 * @param award
 	 * @param thumbnail

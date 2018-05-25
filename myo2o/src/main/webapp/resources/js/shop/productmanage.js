@@ -59,7 +59,7 @@ $(function() {
 
 	getList();
 
-	// 点击上\下架时调用的函数(这个函数也会调用后台的modifyProduct方法,只是这里设置了statusChange为true,所以不需要验证码
+	// 点击上\下架时调用的函数(这个函数也会调用后台的modifyProduct方法,只是这里设置了statusChange为true,所以不需要验证码)
 	function deleteItem(id, enableStatus) {
 		// 定义product JSON并设置productId以及状态(上\下架).
 		var product = {};
@@ -88,7 +88,7 @@ $(function() {
 		});
 	}
 
-	// 将class为product-wrap里面的a标签绑定点击事件.
+	// 将class为product-wrap里面的a标签绑定点击事件.(就是getList方法中动态添加的编辑,上下架以及预览操作)
 	$('.product-wrap')
 			.on(
 					'click',
@@ -97,7 +97,7 @@ $(function() {
 						// event.currentTarget 属性是在事件冒泡阶段内的当前 DOM 元素，通常等于 this。
 						var target = $(e.currentTarget);
 						if (target.hasClass('edit')) {
-							// 如果有class edit,则点击就进入店铺信息编辑界面,并带有productId参数
+							// 如果有class edit,则点击就进入商品信息编辑界面,并带有productId参数
 							window.location.href = '/myo2o/shop/productedit?productId='
 									+ e.currentTarget.dataset.id;
 						} else if (target.hasClass('delete')) {

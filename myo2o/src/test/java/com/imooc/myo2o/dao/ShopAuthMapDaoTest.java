@@ -41,16 +41,12 @@ public class ShopAuthMapDaoTest {
 	public void testBQueryShopAuthMapListByShopId() throws Exception {
 		List<ShopAuthMap> shopAuthMapList = shopAuthMapDao.queryShopAuthMapListByShopId(15, 0, 3);
 		assertEquals(1, shopAuthMapList.size());
-		shopAuthMapList = shopAuthMapDao.queryShopAuthMapListByShopId(28, 0, 3);
-		assertEquals(1, shopAuthMapList.size());
-		int count = shopAuthMapDao.queryShopAuthCountByShopId(28);
-		assertEquals(1, count);
 	}
 
 	@Test
 	public void testCUpdateShopAuthMap() throws Exception {
 		ShopAuthMap shopAuthMap = new ShopAuthMap();
-		shopAuthMap.setShopAuthId(27L);
+		shopAuthMap.setShopAuthId(4L);
 		shopAuthMap.setShopId(15L);
 		shopAuthMap.setTitle("CCO");
 		shopAuthMap.setTitleFlag(2);
@@ -60,8 +56,8 @@ public class ShopAuthMapDaoTest {
 
 	@Test
 	public void testDeleteShopAuthMap() throws Exception {
-		long shopAuthId = 26L;
-		long shopId = 28L;
+		long shopAuthId = 4L;
+		long shopId = 15L;
 		int effectedNum = shopAuthMapDao.deleteShopAuthMap(shopAuthId, shopId);
 		assertEquals(1, effectedNum);
 	}

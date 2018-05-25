@@ -3,7 +3,8 @@ package com.imooc.myo2o.util;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 尝试从http请求中获取对应字符串的数据(在post请求体中含有所需要的键值对)
+ * request.getParameter()方法尝试从http请求中获取对应字符串的数据(在post请求体中含有所需要的键值对),也可以是从url中获取到参数
+ * 
  * @author hh
  *
  */
@@ -23,7 +24,7 @@ public class HttpServletRequestUtil {
 			return false;
 		}
 	}
-	
+
 	public static long getLong(HttpServletRequest request, String name) {
 
 		try {
@@ -41,7 +42,7 @@ public class HttpServletRequestUtil {
 			return -1d;
 		}
 	}
-	
+
 	public static String getString(HttpServletRequest request, String name) {
 		try {
 			String result = request.getParameter(name);

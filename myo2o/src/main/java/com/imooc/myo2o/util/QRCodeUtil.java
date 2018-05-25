@@ -21,6 +21,7 @@ public class QRCodeUtil {
 	public static BitMatrix generateQRCodeStream(String url, HttpServletResponse resp) {
 		// 给响应添加头部信息,告诉浏览器返回的是图片流
 		resp.setHeader("Cache-Control", "no-store");
+		// 不要缓存二维码
 		resp.setHeader("Pragma", "no-cache");
 		resp.setDateHeader("Expires", 0);
 		resp.setContentType("image/png");

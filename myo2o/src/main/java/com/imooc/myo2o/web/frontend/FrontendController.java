@@ -52,6 +52,11 @@ public class FrontendController {
 		return "frontend/awarddetail";
 	}
 
+	@RequestMapping(value = "/awardlist", method = RequestMethod.GET)
+	private String awardList() {
+		return "frontend/awardlist";
+	}
+
 	@RequestMapping(value = "/customerbind", method = RequestMethod.GET)
 	private String customerBind() {
 		return "frontend/customerbind";

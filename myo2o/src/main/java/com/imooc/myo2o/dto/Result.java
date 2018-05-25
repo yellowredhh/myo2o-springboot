@@ -1,7 +1,7 @@
 package com.imooc.myo2o.dto;
 
 /**
- * 封装json对象，所有返回结果都使用它
+ * 封装json对象，所有返回结果都可以使用它
  * 这样后台返回结果代码可以大大省略.
  */
 public class Result<T> {

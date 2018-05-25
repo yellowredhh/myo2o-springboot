@@ -3,6 +3,8 @@ package com.imooc.myo2o.entity;
 import java.util.Date;
 
 public class ProductSellDaily {
+	// 主键Id
+	private Long productSellDailyId;
 	// 哪天的销量,精确到天
 	private Date createTime;
 	// 销量
@@ -11,6 +13,14 @@ public class ProductSellDaily {
 	private Shop shop;
 	// 哪种产品的销量
 	private Product product;
+
+	public Long getProductSellDailyId() {
+		return productSellDailyId;
+	}
+
+	public void setProductSellDailyId(Long productSellDailyId) {
+		this.productSellDailyId = productSellDailyId;
+	}
 
 	public Date getCreateTime() {
 		return createTime;
